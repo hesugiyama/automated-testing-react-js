@@ -8,7 +8,14 @@ function RepoListHooks() {
     e.preventDefault();
     setRepositories([...repositories, newRepo]);
     setNewRepo('');
-  }
+  };
+
+  function removeRepo(repo) {
+    setRepositories(repositories.filter(
+      repoItem => repoItem != repo
+    ));
+  };
+
   return (
     <form 
     onSubmit={handleSubmit}
@@ -20,10 +27,13 @@ function RepoListHooks() {
         value={newRepo}
         onChange={e => setNewRepo(e.target.value)}
       />
-      <button type="submit">Salvar</button>
+      <button type="submit">Save</button>
       <ul>
         {repositories.map(repo =>
-          <li key={repo}>{ repo }</li>
+          <li data-testid={repo} key={repo}>
+            { repo }
+            <button data-testid="remove-button" onClick={() => removeRepo(repo)}>Remove</button>
+          </li>
         )}
       </ul>
     </form>
