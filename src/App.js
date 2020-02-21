@@ -1,5 +1,5 @@
 import React from 'react';
-import RepoList from './RepoListHooks.js';
+import RepoList from './Components/RepoList/index.js';
 
 function App() {
   return (
