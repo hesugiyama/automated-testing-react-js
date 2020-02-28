@@ -20,11 +20,11 @@ test('Should be able to add new repositories', () => {
 
   const input = container.querySelector('#new-repo-input');
   const form = container.querySelector('#new-repo-form');
-
   fireEvent.change(input, {target: {value: 'ReactJS'}});
   fireEvent.submit(form);
-
   expect(!!container.querySelector('#ReactJS')).toBeTruthy();
+  expect(input.value).toBe('');
+  console.log("input value: ", input.value);
 });
 
 test('Should be able to remove a repository', () => {
@@ -41,5 +41,4 @@ test('Should be able to remove a repository', () => {
   const button = container.querySelector('#ReactJS-remove-button');
   waitForElementToBeRemoved(() => container.querySelector('#ReactJS'));
   fireEvent.click(button);
-  console.log(container.querySelector('#list').innerHTML);
 });
